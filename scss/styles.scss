@@ -1,9 +1,128 @@
-$color: firebrick;
+$colors:("primary": rgb(17, 90, 224),
+    "secondary": rgb(216, 228, 107),
+    "tertiary":rgb(83, 80, 80));
 
-body{
-    background: $color;
-    color: white;
+@mixin desktop {
+    @media(min-width: 540px) {
+        @content;
+    }
 }
-h1{
+
+body {
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-family: 'Lucida Sans',
+        'Lucida Sans Regular',
+        'Lucida Grande',
+        'Lucida Sans Unicode',
+        Geneva,
+        Verdana,
+        sans-serif;
+
+}
+
+header {
+    text-transform: uppercase;
+    font-size: 1.3em;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-size: 3.5em;
+    font-weight: 1000;
+}
+
+#box {
+    @include desktop {
+        margin: auto;
+    }
+
+    height:120px;
+    background-color: white;
+    border-color:white;
+    margin: 20px auto;
+    padding: 5px 0;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgb(247, 245, 245);
+    width: max(320px);
+
+    ul {
+        padding: 0 1em;
+
+        list-style: none;
+
+        p {
+            color: map-get($colors, "tertiary");
+            font-weight: bold;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            display: inline-block;
+            margin: 0 0 5px 5px;
+            font-size: 1.1em;
+        }
+
+    }
+}
+
+span {
+    display: inline-block;
+    // width: 10px;
+    // height: 8px;
+    border: 10px solid rgb(200, 199, 247);
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+    padding: 20px;
+    padding-right: 0;
+    height: 94%;
+}
+
+#grid-container {
+    @include desktop {
+        display: flex;
+        flex-direction: row-reverse;
+
+    }
+}
+
+#main {
+    @include desktop {
+        padding-top: 10%;
+        text-align: left;
+        width: max(350px);
+        margin-right: 150px;
+    }
+
+    text-align: center;
+}
+
+button {
     padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: bisque;
+    font-weight: bolder;
+    font-size: 0.8em;
+    border: none;
+    color: map-get($colors, "tertiary");
+    text-transform: uppercase;
+}
+
+#clip {
+    @include desktop {
+        clip-path: polygon(0 0, 74% 0, 46% 100%, 0% 100%);
+    }
+
+    background-color: map-get($colors, "primary");
+    clip-path: polygon(100% 0, 100% 69%, 50% 100%, 0 100%, 0 0);
+    z-index: -1;
+    position: absolute;
+    width:100vw;
+    height:100vh;
 }
